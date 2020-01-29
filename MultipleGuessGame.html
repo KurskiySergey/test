@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Личный сайт студента GeekBrains</title>
+	<link rel="stylesheet" href="style.css"> 
+	<script type="text/javascript">
+
+		var answer = parseInt(Math.random() * 100);
+		var tryCount = 0;
+		var maxTryCount = 3;
+		var whoIsGuess;
+		var player1;
+		var player2;
+
+		function Start() {
+
+			 player1 = document.getElementById("player1").value;
+			 player2 = document.getElementById("player2").value;
+
+			 whoIsGuess = player1;
+
+
+			if ( player1 == "" || player2 == "" || (player1 == "" && player2 == "")) {
+
+				alert("Для начала игры введите имя игроков");
+
+			} else {
+
+				hide("player1");
+				hide("player2");
+				hide("start");
+				hide("player1Text");
+				hide("player2Text");
+				show("game");
+			}	
+		}
+
+		function readInt(){
+			var number = document.getElementById("userAnswer").value;
+			return parseInt(number);
+			// return +document.getElementById("userAnswer").value;
+		}
+
+		function write(text){
+			document.getElementById("info").innerHTML = text;
+		}
+
+		function hide(id){
+			document.getElementById(id).style.display = "none";
+		}
+
+		function show(id) {
+			document.getElementById(id).hidden = false;
+		}
+
+		function checkAnswer(playerName , nextPlayer , userAnswer) {
+
+			if(userAnswer == answer){
+
+					write("<b>Поздравляю, вы угадали!</b> Победил игрок " + playerName );			
+					hide("button");
+					hide("userAnswer");
+					hide("end");
+			} 
+			else if(userAnswer > answer){
+					write("Вы ввели слишком большое число<br>. Теперь ходит игрок " + nextPlayer + "<br> Введите число от 1 до 100");
+					whoIsGuess = nextPlayer;
+			} 
+			else if(userAnswer < answer){
+					write("Вы ввели слишком маленькое число<br>. Теперь ходит игрок " + nextPlayer  + "<br> Введите число от 1 до 100");
+					whoIsGuess = nextPlayer;				
+			}
+
+
+		}
+
+		function guess(){
+
+			var userAnswer = readInt();
+
+			if ( whoIsGuess == player1) {
+				checkAnswer (player1 , player2 , userAnswer)
+
+			} else {
+
+				checkAnswer(player2 , player1 , userAnswer);
+			}
+
+			
+		}
+
+		function giveUp() {
+
+			if ( whoIsGuess == player1 ) {
+
+				write( "Игрок " + player1 + " сдался. Победил игрок " + player2 + "<br> Правильный ответ = " + answer);
+
+				hide("button");
+				hide("userAnswer");
+				hide("end");
+
+			} else {
+
+				write( "Игрок " + player2 + " сдался. Победил игрок " + player1 + "<br> Правильный ответ = " + answer);
+
+				hide("button");
+				hide("userAnswer");
+				hide("end");
+
+			}
+
+		}
+
+	</script>
+</head>
+<body>
+
+<div class="content">
+	<div class="header">
+		<a href="index.html">Главная</a>
+		<a href="puzzle.html">Загадки</a>
+		<a href="guess.html">Угадайка</a>
+		<a href="#">Угадайка для двоих</a>
+		<a href="Generator.html">Генератор паролей</a>
+	</div>
+
+<div class="contentWrap">
+    <div class="content">
+        <div class="center">
+
+			<h1>Игра угадайка для двух игроков</h1>
+
+			<div class="box">
+
+				<p id ="player1Text"> Введите имя первого игрока</p>
+				<input type="text" id ="player1">
+				<br>
+				<p id ="player2Text"> Введите имя второго игрока</p>
+				<input type="text" id = "player2">
+				<br>
+				<a href="#"  onClick="Start();" id = "start">Начать игру</a>
+				<br><br><br><br>
+				<form id="game" hidden>
+					<p id="info">Угадайте число от 1 до 100.</p>
+					<input type="text" id="userAnswer">
+					<br>
+					<a href="#" onClick="guess();" id="button" >Ответить</a>
+					<a href="#"  onClick ="giveUp();" id="end" >Сдаться</a>
+				</form>		
+			</div>
+
+        </div>
+    </div>
+</div>
+
+	
+
+</div>
+<div class="footer">
+	Copyright &copy; Sergey Kurskiy
+<div>
+
+
+</body>
+</html>

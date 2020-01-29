@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Личный сайт студента GeekBrains</title>
+	<link rel="stylesheet" href="style.css"> 
+	<script type="text/javascript">
+
+	var availableParameters = ['a' ,'b' , 'c','d' , 'e' , 'f' , 'g' , 'h' , 'i' , 'j' , 'k' , 'l' , 'm' , 'n' , 'o' , 'p' , 'q' , 'r' , 's', 't', 'u' , 'v' , 'w' , 'x' , 'y' , 'z' , '0' , '1' , '2' , '3' , '4' , '5' , '6' , '7' , '8' , '9' ];
+
+	function write(text) {
+
+		document.getElementById("info").innerHTML = text;
+	}
+
+	function generatePassword() {
+
+		var userAnswer = parseInt(document.getElementById("userAnswer").value);
+		var rand;
+		var  password = "";
+
+		for ( var i = 0 ; i < userAnswer; i++ ) {
+			rand = Math.round(Math.random() * (availableParameters.length - 1));
+			password += availableParameters[rand];
+		}
+
+		write(password);
+	} 
+
+	</script>
+</head>
+<body>
+
+<div class="content">
+	<div class="header">
+		<a href="index.html">Главная</a>
+		<a href="puzzle.html">Загадки</a>
+		<a href="guess.html">Угадайка</a>
+		<a href="MultipleGuessGame.html">Угадайка для двоих</a>
+		<a href="#">Генератор паролей</a>
+	</div>
+
+<div class="contentWrap">
+    <div class="content">
+        <div class="center">
+
+			<h1>Генератор пароля</h1>
+
+			<div class="box">
+
+					<p id="info">Введите желаемую длину пароля</p>
+					<input type="text" id="userAnswer">
+					<br>
+					<a href="#" onClick="generatePassword();" id="button" >Сгенерировать пароль</a>
+					
+			</div>
+
+        </div>
+    </div>
+</div>
+
+	
+
+</div>
+<div class="footer">
+	Copyright &copy; Sergey Kurskiy
+<div>
+
+
+</body>
+</html>
