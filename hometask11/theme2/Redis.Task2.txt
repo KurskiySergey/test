@@ -1,0 +1,17 @@
+Создадим два упорядоченных списка : users и email
+при регистрациии нового пользователя добавляется новое уникальное значение индекса для каждого из списка.
+Поскольку добавление происходит одновременно , то индексы нового пользователя и почты совпадают
+=> Можно осуществить по ним поиск
+
+ZADD users 1 "nick"
+ZADD email 1 "mail.ru"
+
+ZADD users 2 "admin"
+ZADD email 2 "phystech.edu"
+
+ZSCORE users nick
+ZRANGEBYSCORE email 1 1
+
+ZSCORE email phystech.edu
+ZRANGEBYSCORE users 2 2
+

@@ -1,0 +1,15 @@
+Создадим список , позволяющий хранить информацию о товарах и их категориях
+
+
+use shop
+
+
+db.shop.insert({catalogs : [{"1" : "Processors"} , {"2" , "Videocards"} , {"3" , "etc"}]})
+
+db.shop.insert({id : "1"})
+db.shop.update({id : "1"} , {$set : {catalog_id : "1" , price : "200" , description : "text" }})
+
+db.shop.insert({id : "2"})
+...
+
+db.shop.find()
