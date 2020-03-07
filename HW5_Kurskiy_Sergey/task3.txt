@@ -1,0 +1,6 @@
+Donatello 450000
+Rafael 15000
+Leonardo 3500
+Mike 6500
+Splinter 10
+
